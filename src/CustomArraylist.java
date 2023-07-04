@@ -1,14 +1,14 @@
-public class CustomArraylist {
-    private int[] data;
+public class CustomArraylist<T> {
+    private Object[] data;
     private int size;
     private int DEFAULT_SIZE = 10;
 
     CustomArraylist() {
-        data = new int[DEFAULT_SIZE];
+        data = new Object[DEFAULT_SIZE];
         size = 0;
     }
 
-    public void add(int value) {
+    public void add(T value) {
         if (size == data.length) {
             this.resize();
         }
@@ -17,11 +17,11 @@ public class CustomArraylist {
 
     }
 
-    public int get(int index) {
+    public T get(int index) {
         if (index >= this.size) {
             System.err.println("Out of index access");
         }
-        return this.data[index];
+        return (T) this.data[index];
     }
 
     public Boolean isEmpty() {
@@ -48,7 +48,7 @@ public class CustomArraylist {
     }
 
     private void resize() {
-        int[] temp = new int[2 * this.size];
+        Object[] temp = new Object[2 * this.size];
 
         for (int i = 0; i < size; i++) {
             temp[i] = data[i];
